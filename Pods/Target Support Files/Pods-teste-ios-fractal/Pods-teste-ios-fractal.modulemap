@@ -1,0 +1,6 @@
+framework module Pods_teste_ios_fractal {
+  umbrella header "Pods-teste-ios-fractal-umbrella.h"
+
+  export *
+  module * { export * }
+}
