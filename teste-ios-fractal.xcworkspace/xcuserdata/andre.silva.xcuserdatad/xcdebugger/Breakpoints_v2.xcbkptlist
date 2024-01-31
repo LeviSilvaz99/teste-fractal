@@ -3,4 +3,69 @@
    uuid = "BF45ABF7-0C57-4554-BDF6-5841E1E29A63"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76FFAD52-58E4-4498-9865-62269005C223"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "teste-ios-fractal/Application/Presentation/Home/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "heartButtonTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "76FFAD52-58E4-4498-9865-62269005C223 - c4c48c1d8b12e917"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_ios_fractal.HomeViewController.heartButtonTapped() -&gt; ()"
+                  moduleName = "teste-ios-fractal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andre.silva/Desktop/teste-ios-fractal/teste-ios-fractal/Application/Presentation/Home/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "76FFAD52-58E4-4498-9865-62269005C223 - c4c48c1d8b12efe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_ios_fractal.HomeViewController.heartButtonTapped() -&gt; ()"
+                  moduleName = "teste-ios-fractal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andre.silva/Desktop/teste-ios-fractal/teste-ios-fractal/Application/Presentation/Home/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "992">
+               </Location>
+               <Location
+                  uuid = "76FFAD52-58E4-4498-9865-62269005C223 - c4c48c1d8b12efe6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "teste_ios_fractal.HomeViewController.heartButtonTapped() -&gt; ()"
+                  moduleName = "teste-ios-fractal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andre.silva/Desktop/teste-ios-fractal/teste-ios-fractal/Application/Presentation/Home/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "1008">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

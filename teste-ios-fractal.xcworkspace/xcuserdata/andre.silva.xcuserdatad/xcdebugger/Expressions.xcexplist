@@ -10,5 +10,21 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "HomeViewController.heartButtonTapped():HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "showOnlySavedCells">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.collectionView(_:numberOfItemsInSection:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "savedCellIndices.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

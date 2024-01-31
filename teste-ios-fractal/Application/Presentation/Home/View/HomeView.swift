@@ -59,10 +59,23 @@ class HomeView: UIView {
         return button
     }()
     
+    private var beerId: Int?
     
     @objc private func heartButtonTapped() {
         let isHeartFilled = heartButton.tintColor == Colors.red.uiColor
         heartButton.tintColor = isHeartFilled ? Colors.black.uiColor : Colors.red.uiColor
+        
+        if let id = beerId {
+            UserDefaults.standard.set(!isHeartFilled, forKey: "Heart\(id)")
+        }
+        
+    }
+
+    func setBeerId(_ id: Int) {
+        self.beerId = id
+        
+        let isHeartFilled = UserDefaults.standard.bool(forKey: "Heart\(id)")
+        heartButton.tintColor = isHeartFilled ? Colors.red.uiColor : Colors.black.uiColor
     }
 
 

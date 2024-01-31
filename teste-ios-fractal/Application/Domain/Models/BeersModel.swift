@@ -16,15 +16,4 @@ struct BeersModel: Codable {
         case name, description, tagline, id
         case imageURL = "image_url"
     }
-    
-    var isFavorite: Bool {
-           get {
-               // Recuperar o estado de favorito do UserDefaults
-               return UserDefaults.standard.bool(forKey: "\(name ?? "")_isFavorite")
-           }
-           set {
-               // Salvar o estado de favorito no UserDefaults
-               UserDefaults.standard.set(newValue, forKey: "\(name ?? "")_isFavorite")
-           }
-       }
 }

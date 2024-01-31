@@ -42,6 +42,22 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
         return searchController
     }()
     
+    private lazy var noResultImage: UIImageView = {
+        let i = UIImageView()
+        i.image = UIImage(named: "notFound")
+        i.contentMode = .scaleAspectFit
+        return i
+    }()
+    
+    private lazy var textNoResult: UILabel = {
+        let l = UILabel()
+        l.text = "Nem uma cervejaria encontrada !"
+        l.font = UIFont(name: "Montserrat-Bold", size: 18)
+        l.numberOfLines = 0
+        l.textColor = Colors.graySmall.uiColor
+        return l
+    }()
+
     private lazy var heartButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "heart.fill"), for: .normal) // Usando o coração preenchido
@@ -53,10 +69,14 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     var beers: [BeersModel] = []
     var search = [BeersModel]()
     var searching = false
-    
+    private var showOnlySavedCells = false
+    private var savedCellIndices: Set<Int> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        noResultImage.isHidden = true
+        textNoResult.isHidden = true
         
         view.backgroundColor = .white
         navigationItem.searchController = searchController
@@ -90,6 +110,8 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     
     override func buildViewHierarchy() {
         view.addSubview(self.collectionView)
+        view.addSubview(self.noResultImage)
+        view.addSubview(self.textNoResult)
     }
     
     override func setupConstraints() {
@@ -97,6 +119,12 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
         collectionView.leadingToSuperview()
         collectionView.trailingToSuperview()
         collectionView.bottomToSuperview()
+        
+        noResultImage.centerYToSuperview()
+        noResultImage.centerXToSuperview()
+        
+        textNoResult.topToBottom(of: noResultImage, offset: 20)
+        textNoResult.centerX(to: noResultImage)
     }
     
     private func setupColorButtonCancel() {
@@ -136,7 +164,31 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     
     @objc private func heartButtonTapped() {
         heartButton.tintColor = heartButton.tintColor == .white ? .red : .white
+        
+        if savedCellIndices.isEmpty {
+            
+            savedCellIndices = Set(beers.enumerated().compactMap { index, beer in
+                return UserDefaults.standard.bool(forKey: "Heart\(beer.id ?? 0)") ? index : nil
+            })
+        }
+
+        if showOnlySavedCells {
+            showOnlySavedCells = false
+            noResultImage.isHidden = true
+            textNoResult.isHidden = true
+            savedCellIndices.removeAll()
+        } else {
+            
+            if savedCellIndices.count == 0 {
+                noResultImage.isHidden = false
+                textNoResult.isHidden = false
+            }
+            showOnlySavedCells = true
+        }
+
+        collectionView.reloadData()
     }
+
     
     @objc private func searchButtonTapped() {
         
@@ -212,24 +264,39 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if searching {
+        if showOnlySavedCells {
+            return savedCellIndices.count
+        } else if searching {
             return search.count
-        } else { 
+        } else {
             return beers.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell
-        
-        if searching {
-            cell?.configure(search[indexPath.item])
+
+        var beer: BeersModel
+
+        if showOnlySavedCells {
+            if let index = savedCellIndices.index(savedCellIndices.startIndex, offsetBy: indexPath.item, limitedBy: savedCellIndices.endIndex) {
+                let savedIndex = savedCellIndices[index]
+                beer = beers[savedIndex]
+            } else {
+                return UICollectionViewCell()
+            }
+        } else if searching {
+            beer = search[indexPath.item]
+            
         } else {
-            cell?.configure(beers[indexPath.item])
+            beer = beers[indexPath.item]
         }
-        
+
+        cell?.configure(beer)
+
         return cell ?? UICollectionViewCell()
     }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: 80)
@@ -249,6 +316,14 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         search = beers.filter { $0.name?.lowercased().hasPrefix(searchText.lowercased()) ?? false }
         searching = true
+        
+        if search.isEmpty {
+            noResultImage.isHidden = false
+            textNoResult.isHidden = false
+        } else {
+            noResultImage.isHidden = true
+            textNoResult.isHidden = true
+        }
         collectionView.reloadData()
     }
     

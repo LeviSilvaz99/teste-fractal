@@ -36,6 +36,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     func configure(_ beer: BeersModel) {
         customView.titleBeersLabel.text = beer.name ?? ""
         customView.textBeersLabel.text = beer.tagline ?? ""
+        customView.setBeerId(beer.id ?? 0)
         
         if let imageURL = beer.imageURL, let url = URL(string: imageURL) {
             customView.homeImageView.kf.setImage(with: url)
