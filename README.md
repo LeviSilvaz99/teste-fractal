@@ -1,5 +1,5 @@
 ## Install
 
-- para instalar rode o seguinte comando: 
+- para instalar digite o seguinte comando: 
 - pod install
 
