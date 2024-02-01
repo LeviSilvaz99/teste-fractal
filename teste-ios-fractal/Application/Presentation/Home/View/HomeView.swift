@@ -61,6 +61,20 @@ class HomeView: UIView {
     
     private var beerId: Int?
     
+    init() {
+        super.init(frame: .zero)
+        setupLayout()
+        setupConstraints()
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+
+    }
+}
+
+
+extension HomeView {
     @objc private func heartButtonTapped() {
         let isHeartFilled = heartButton.tintColor == Colors.red.uiColor
         heartButton.tintColor = isHeartFilled ? Colors.black.uiColor : Colors.red.uiColor
@@ -68,7 +82,6 @@ class HomeView: UIView {
         if let id = beerId {
             UserDefaults.standard.set(!isHeartFilled, forKey: "Heart\(id)")
         }
-        
     }
 
     func setBeerId(_ id: Int) {
@@ -77,8 +90,7 @@ class HomeView: UIView {
         let isHeartFilled = UserDefaults.standard.bool(forKey: "Heart\(id)")
         heartButton.tintColor = isHeartFilled ? Colors.red.uiColor : Colors.black.uiColor
     }
-
-
+    
     private func setupLayout() {
         addSubview(bgView)
         bgView.addSubview(homeImageView)
@@ -114,16 +126,5 @@ class HomeView: UIView {
         
         textBeersLabel.leadingToTrailing(of: homeImageView, offset: 4)
         textBeersLabel.topToBottom(of: titleBeersLabel, offset: 4)
-    }
-    
-    init() {
-        super.init(frame: .zero)
-        setupLayout()
-        setupConstraints()
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-
     }
 }

@@ -52,17 +52,15 @@ class HomeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayout()
         setupConstraint()
-        
         setupUI(self.beers)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back-button"), style: .done, target: self, action: #selector(backButtonTapped))
-        
-        navigationController?.navigationBar.tintColor = .white
+        backAction()
     }
-    
+
+}
+
+extension HomeDetailViewController {
     @objc func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
@@ -81,6 +79,12 @@ class HomeDetailViewController: UIViewController {
             }
             
         }
+    }
+    
+    private func backAction() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back-button"), style: .done, target: self, action: #selector(backButtonTapped))
+        
+        navigationController?.navigationBar.tintColor = .white
     }
     
     private func setupLayout() {

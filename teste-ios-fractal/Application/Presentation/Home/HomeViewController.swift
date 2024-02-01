@@ -71,8 +71,6 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     var searching = false
     private var showOnlySavedCells = false
     private var savedCellIndices: Set<Int> = []
-    private var fetchBeersUseCase: FetchBeersUseCase!
-    let beerDataProvider = APIBeerDataProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +96,9 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
         textNoResult.topToBottom(of: noResultImage, offset: 20)
         textNoResult.centerX(to: noResultImage)
     }
-    
+}
+
+extension HomeViewController {
     private func setupUI() {
         setupNavigationBar()
         setupStatusBar()
@@ -194,44 +194,6 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
             }
         }
         
-    }
-    
-    func fetchBeers(completion: @escaping ([BeersModel]?, Error?) -> Void) {
-            
-        guard let url = APIConstants.apiURL else {
-            completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
-            return
-        }
-        
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            
-            
-            guard let data = data else {
-                completion(nil, NSError(domain: "No data returned", code: 1, userInfo: nil))
-                return
-            }
-            
-            do {
-                
-                let decoder = JSONDecoder()
-                
-                let beers = try decoder.decode([BeersModel].self, from: data)
-                
-                
-                completion(beers, nil)
-            } catch {
-                
-                completion(nil, error)
-            }
-        }
-        
-        task.resume()
     }
     
     private func updateLayoutNavigationBar() {
