@@ -9,6 +9,10 @@ import UIKit
 import TinyConstraints
 import Kingfisher
 
+public protocol HomeDetailViewControllerDisplay: AnyObject {
+    
+}
+
 class HomeDetailViewController: UIViewController {
     
     lazy var titleBeersLabel: UILabel = {
@@ -106,4 +110,16 @@ class HomeDetailViewController: UIViewController {
         descriptionLabel.trailingToSuperview(offset: 16)
         
     }
+}
+
+extension HomeDetailViewController: HomeViewControllerDisplay {
+    func reloadData(with beers: [BeersModel]) {
+        
+    }
+
+    func reloadData() {
+        
+    }
+    
+    
 }

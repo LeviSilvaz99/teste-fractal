@@ -3,12 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "HomeViewController.searchButtonTapped():HomeViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "navigationItem.searchControlle">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "HomeViewController.collectionView(_:didSelectItemAt:):HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "HomeViewController.heartButtonTapped():HomeViewController.swift">
@@ -19,10 +14,34 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HomeDetailViewModel.init(coordinator:):HomeDetailViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "beers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.searchButtonTapped():HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationItem.searchControlle">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HomeViewController.collectionView(_:numberOfItemsInSection:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "savedCellIndices.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeDetailViewController.init(nibName:bundle:):HomeDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "beers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

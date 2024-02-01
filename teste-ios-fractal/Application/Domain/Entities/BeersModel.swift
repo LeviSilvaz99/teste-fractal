@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BeersModel: Codable {
+public struct BeersModel: Codable {
     let name, description, tagline: String?
     let imageURL: String?
     let id: Int?

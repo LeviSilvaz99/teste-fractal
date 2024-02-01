@@ -12,6 +12,7 @@ protocol BeerDataProvider {
 }
 
 class APIBeerDataProvider: BeerDataProvider {
+    
     func fetchBeers(completion: @escaping ([BeersModel]?, Error?) -> Void) {
         guard let url = APIConstants.apiURL else {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))

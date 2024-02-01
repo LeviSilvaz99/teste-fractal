@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		366D1ACD2B6B1C4600A77EA4 /* BeerListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1ACC2B6B1C4600A77EA4 /* BeerListUseCase.swift */; };
 		366D1AD02B6B1C5F00A77EA4 /* BeerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1ACF2B6B1C5F00A77EA4 /* BeerDataProvider.swift */; };
-		366D1AD52B6B201A00A77EA4 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */; };
+		366D1AD82B6B29CB00A77EA4 /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1AD72B6B29CB00A77EA4 /* HomeDetailViewModel.swift */; };
+		366D1ADA2B6BDE0300A77EA4 /* HomeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1AD92B6BDE0300A77EA4 /* HomeDetailCoordinator.swift */; };
+		366D1ADC2B6BDE0F00A77EA4 /* HomeDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1ADB2B6BDE0F00A77EA4 /* HomeDetailFactory.swift */; };
 		367D72052B683FD700776896 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F32B683FD700776896 /* Montserrat-LightItalic.ttf */; };
 		367D72062B683FD700776896 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F42B683FD700776896 /* Montserrat-Medium.ttf */; };
 		367D72072B683FD700776896 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F52B683FD700776896 /* Montserrat-BoldItalic.ttf */; };
@@ -49,7 +51,9 @@
 /* Begin PBXFileReference section */
 		366D1ACC2B6B1C4600A77EA4 /* BeerListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListUseCase.swift; sourceTree = "<group>"; };
 		366D1ACF2B6B1C5F00A77EA4 /* BeerDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDataProvider.swift; sourceTree = "<group>"; };
-		366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
+		366D1AD72B6B29CB00A77EA4 /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
+		366D1AD92B6BDE0300A77EA4 /* HomeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailCoordinator.swift; sourceTree = "<group>"; };
+		366D1ADB2B6BDE0F00A77EA4 /* HomeDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailFactory.swift; sourceTree = "<group>"; };
 		367D71F32B683FD700776896 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		367D71F42B683FD700776896 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		367D71F52B683FD700776896 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -137,9 +141,19 @@
 		366D1AD32B6B200500A77EA4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		366D1AD62B6B29B800A77EA4 /* HomeDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				367D721D2B68570B00776896 /* HomeDetailViewController.swift */,
+				366D1AD72B6B29CB00A77EA4 /* HomeDetailViewModel.swift */,
+				366D1AD92B6BDE0300A77EA4 /* HomeDetailCoordinator.swift */,
+				366D1ADB2B6BDE0F00A77EA4 /* HomeDetailFactory.swift */,
+			);
+			path = HomeDetailViewController;
 			sourceTree = "<group>";
 		};
 		367D71F22B683FD700776896 /* static */ = {
@@ -218,6 +232,7 @@
 		36CCB7882B631B4D00649FD5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				366D1AD62B6B29B800A77EA4 /* HomeDetailViewController */,
 				36CCB78B2B631B7700649FD5 /* Home */,
 			);
 			path = Presentation;
@@ -246,7 +261,6 @@
 			children = (
 				369D5AA92B6465DC009BF358 /* View */,
 				36CCB7782B63159700649FD5 /* HomeViewController.swift */,
-				367D721D2B68570B00776896 /* HomeDetailViewController.swift */,
 				36CCB7922B632B4400649FD5 /* HomeViewModel.swift */,
 				36CCB7942B632B6100649FD5 /* HomeCoordinator.swift */,
 				36CCB7962B632BB000649FD5 /* HomeFactory.swift */,
@@ -437,15 +451,17 @@
 				366D1AD02B6B1C5F00A77EA4 /* BeerDataProvider.swift in Sources */,
 				369D5AAD2B6466F9009BF358 /* Colors.swift in Sources */,
 				367D72182B68456200776896 /* BeersModel.swift in Sources */,
+				366D1ADA2B6BDE0300A77EA4 /* HomeDetailCoordinator.swift in Sources */,
 				36CCB7752B63159700649FD5 /* AppDelegate.swift in Sources */,
 				36CCB7972B632BB000649FD5 /* HomeFactory.swift in Sources */,
 				36CCB7912B6327FF00649FD5 /* ViewController.swift in Sources */,
-				366D1AD52B6B201A00A77EA4 /* UISearchBar+Extension.swift in Sources */,
 				36CCB7932B632B4400649FD5 /* HomeViewModel.swift in Sources */,
 				366D1ACD2B6B1C4600A77EA4 /* BeerListUseCase.swift in Sources */,
+				366D1ADC2B6BDE0F00A77EA4 /* HomeDetailFactory.swift in Sources */,
 				369D5AAB2B646600009BF358 /* HomeView.swift in Sources */,
 				367D721C2B68459D00776896 /* APIConstants.swift in Sources */,
 				36CCB7772B63159700649FD5 /* SceneDelegate.swift in Sources */,
+				366D1AD82B6B29CB00A77EA4 /* HomeDetailViewModel.swift in Sources */,
 				36CCB7952B632B6100649FD5 /* HomeCoordinator.swift in Sources */,
 				36CCB79E2B633B9900649FD5 /* HomeCollectionViewCell.swift in Sources */,
 				367D721E2B68570B00776896 /* HomeDetailViewController.swift in Sources */,

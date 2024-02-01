@@ -9,7 +9,7 @@ import UIKit
 import TinyConstraints
 
 public protocol HomeViewControllerDisplay: AnyObject {
-    
+    func reloadData(with beers: [BeersModel])
 }
 
 class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearchControllerDelegate {
@@ -72,46 +72,12 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     private var showOnlySavedCells = false
     private var savedCellIndices: Set<Int> = []
     private var fetchBeersUseCase: FetchBeersUseCase!
+    let beerDataProvider = APIBeerDataProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let beerDataProvider = APIBeerDataProvider()
-        fetchBeersUseCase = BeerListUseCase(beerDataProvider: beerDataProvider)
-        
-        noResultImage.isHidden = true
-        textNoResult.isHidden = true
-        
-        view.backgroundColor = .white
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        self.searchController.searchBar.delegate = self
-        self.searchController.delegate = self
-        navigationItem.searchController = nil
-        
-        setupNavigationBar()
-        setupStatusBar()
-        setupColorButtonCancel()
-        
-        // Chamar o caso de uso para buscar cervejas
-        fetchBeersUseCase.execute { [weak self] (fetchedBeers, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                // Lide com o erro, se houver
-                print("Erro ao buscar cervejas: \(error.localizedDescription)")
-                return
-            }
-            
-            if let fetchedBeers = fetchedBeers {
-                self.beers = fetchedBeers
-                print(fetchedBeers)
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-        }
+        setupUI()
+        viewModel.setListener()
     }
     
     override func buildViewHierarchy() {
@@ -131,6 +97,24 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
         
         textNoResult.topToBottom(of: noResultImage, offset: 20)
         textNoResult.centerX(to: noResultImage)
+    }
+    
+    private func setupUI() {
+        setupNavigationBar()
+        setupStatusBar()
+        setupColorButtonCancel()
+        setupInitialUI()
+    }
+    
+    private func setupInitialUI() {
+        noResultImage.isHidden = true
+        textNoResult.isHidden = true
+        view.backgroundColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        self.searchController.searchBar.delegate = self
+        self.searchController.delegate = self
+        navigationItem.searchController = nil
     }
     
     private func setupColorButtonCancel() {
@@ -310,10 +294,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = beers[indexPath.item]
-        let beerDetailVC = HomeDetailViewController()
-        beerDetailVC.beers = selectedItem
+        let homeDetailVC = HomeDetailViewController()
+        homeDetailVC.beers = selectedItem
         
-        navigationController?.pushViewController(beerDetailVC, animated: true)
+        navigationController?.pushViewController(homeDetailVC, animated: true)
     }
 }
 
@@ -344,6 +328,13 @@ extension HomeViewController: UISearchBarDelegate {
 
 extension HomeViewController: HomeViewControllerDisplay {
     
+    public func reloadData(with beers: [BeersModel]) {
+        self.beers = beers
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
 }
 
 extension UISearchBar {

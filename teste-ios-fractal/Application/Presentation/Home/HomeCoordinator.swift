@@ -8,7 +8,7 @@
 import UIKit
 
 enum HomeConfigureAction {
-    
+    case HomeDetail
 }
 
 protocol HomeCoordinating: AnyObject {
