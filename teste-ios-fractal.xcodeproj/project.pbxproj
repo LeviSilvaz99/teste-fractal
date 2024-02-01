@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		366D1ACD2B6B1C4600A77EA4 /* BeerListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1ACC2B6B1C4600A77EA4 /* BeerListUseCase.swift */; };
+		366D1AD02B6B1C5F00A77EA4 /* BeerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1ACF2B6B1C5F00A77EA4 /* BeerDataProvider.swift */; };
+		366D1AD52B6B201A00A77EA4 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */; };
 		367D72052B683FD700776896 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F32B683FD700776896 /* Montserrat-LightItalic.ttf */; };
 		367D72062B683FD700776896 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F42B683FD700776896 /* Montserrat-Medium.ttf */; };
 		367D72072B683FD700776896 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 367D71F52B683FD700776896 /* Montserrat-BoldItalic.ttf */; };
@@ -44,6 +47,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		366D1ACC2B6B1C4600A77EA4 /* BeerListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerListUseCase.swift; sourceTree = "<group>"; };
+		366D1ACF2B6B1C5F00A77EA4 /* BeerDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDataProvider.swift; sourceTree = "<group>"; };
+		366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		367D71F32B683FD700776896 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		367D71F42B683FD700776896 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		367D71F52B683FD700776896 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -104,6 +110,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		366D1ACA2B6B1BFA00A77EA4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				367D72172B68456200776896 /* BeersModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		366D1ACB2B6B1C2E00A77EA4 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				366D1ACC2B6B1C4600A77EA4 /* BeerListUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		366D1ACE2B6B1C4F00A77EA4 /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				366D1ACF2B6B1C5F00A77EA4 /* BeerDataProvider.swift */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		366D1AD32B6B200500A77EA4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				366D1AD42B6B201A00A77EA4 /* UISearchBar+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		367D71F22B683FD700776896 /* static */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,14 +165,6 @@
 				367D72042B683FD700776896 /* Montserrat-ExtraBoldItalic.ttf */,
 			);
 			path = static;
-			sourceTree = "<group>";
-		};
-		367D72192B68456700776896 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				367D72172B68456200776896 /* BeersModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		367D721A2B68458E00776896 /* Constants */ = {
@@ -196,8 +226,8 @@
 		36CCB7892B631B5400649FD5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				367D721A2B68458E00776896 /* Constants */,
-				367D72192B68456700776896 /* Models */,
+				366D1ACB2B6B1C2E00A77EA4 /* UseCases */,
+				366D1ACA2B6B1BFA00A77EA4 /* Entities */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -205,6 +235,8 @@
 		36CCB78A2B631B6100649FD5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				367D721A2B68458E00776896 /* Constants */,
+				366D1ACE2B6B1C4F00A77EA4 /* DataProviders */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -228,7 +260,7 @@
 				36CCB7882B631B4D00649FD5 /* Presentation */,
 				36CCB7892B631B5400649FD5 /* Domain */,
 				36CCB78A2B631B6100649FD5 /* Data */,
-				36CCB78E2B6327D800649FD5 /* Extension */,
+				36CCB78E2B6327D800649FD5 /* Utils */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -241,14 +273,15 @@
 			path = HomeCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		36CCB78E2B6327D800649FD5 /* Extension */ = {
+		36CCB78E2B6327D800649FD5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				366D1AD32B6B200500A77EA4 /* Extension */,
 				36CCB7982B6330C400649FD5 /* Fonts */,
 				36CCB7902B6327FF00649FD5 /* ViewController.swift */,
 				369D5AAC2B6466F9009BF358 /* Colors.swift */,
 			);
-			path = Extension;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		36CCB7982B6330C400649FD5 /* Fonts */ = {
@@ -401,12 +434,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				36CCB7792B63159700649FD5 /* HomeViewController.swift in Sources */,
+				366D1AD02B6B1C5F00A77EA4 /* BeerDataProvider.swift in Sources */,
 				369D5AAD2B6466F9009BF358 /* Colors.swift in Sources */,
 				367D72182B68456200776896 /* BeersModel.swift in Sources */,
 				36CCB7752B63159700649FD5 /* AppDelegate.swift in Sources */,
 				36CCB7972B632BB000649FD5 /* HomeFactory.swift in Sources */,
 				36CCB7912B6327FF00649FD5 /* ViewController.swift in Sources */,
+				366D1AD52B6B201A00A77EA4 /* UISearchBar+Extension.swift in Sources */,
 				36CCB7932B632B4400649FD5 /* HomeViewModel.swift in Sources */,
+				366D1ACD2B6B1C4600A77EA4 /* BeerListUseCase.swift in Sources */,
 				369D5AAB2B646600009BF358 /* HomeView.swift in Sources */,
 				367D721C2B68459D00776896 /* APIConstants.swift in Sources */,
 				36CCB7772B63159700649FD5 /* SceneDelegate.swift in Sources */,

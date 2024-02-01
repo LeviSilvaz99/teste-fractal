@@ -14,8 +14,8 @@
             filePath = "teste-ios-fractal/Application/Presentation/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "heartButtonTapped()"
             landmarkType = "7">
             <Locations>

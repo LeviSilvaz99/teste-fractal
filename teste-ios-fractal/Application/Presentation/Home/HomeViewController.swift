@@ -71,9 +71,13 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
     var searching = false
     private var showOnlySavedCells = false
     private var savedCellIndices: Set<Int> = []
+    private var fetchBeersUseCase: FetchBeersUseCase!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let beerDataProvider = APIBeerDataProvider()
+        fetchBeersUseCase = BeerListUseCase(beerDataProvider: beerDataProvider)
         
         noResultImage.isHidden = true
         textNoResult.isHidden = true
@@ -88,8 +92,11 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
         setupNavigationBar()
         setupStatusBar()
         setupColorButtonCancel()
-
-        fetchBeers { (fetchedBeers, error) in
+        
+        // Chamar o caso de uso para buscar cervejas
+        fetchBeersUseCase.execute { [weak self] (fetchedBeers, error) in
+            guard let self = self else { return }
+            
             if let error = error {
                 // Lide com o erro, se houver
                 print("Erro ao buscar cervejas: \(error.localizedDescription)")
@@ -97,7 +104,6 @@ class HomeViewController: ViewController<HomeViewModelProtocol, UIView>, UISearc
             }
             
             if let fetchedBeers = fetchedBeers {
-                
                 self.beers = fetchedBeers
                 print(fetchedBeers)
                 
