@@ -39,7 +39,7 @@ class HomeView: UIView {
         let l = UILabel()
         l.text = "Vanilla Bean Infused Belgian Quad."
         l.font = UIFont(name: "Montserrat-Regular", size: 14)
-        l.numberOfLines = 0
+        l.numberOfLines = 1
         l.textColor = Colors.graySmall.uiColor
         return l
     }()
@@ -126,5 +126,6 @@ extension HomeView {
         
         textBeersLabel.leadingToTrailing(of: homeImageView, offset: 4)
         textBeersLabel.topToBottom(of: titleBeersLabel, offset: 4)
+        textBeersLabel.width(200)
     }
 }
